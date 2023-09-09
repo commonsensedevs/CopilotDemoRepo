@@ -1,0 +1,62 @@
+﻿<!--Bind this view to CategoryModel-->
+@model IEnumerable<CopiloDemoWebApp.Models.CategoryModel>
+
+@{
+    ViewData["Title"] = "This is category view";
+}
+
+<!--Display the list of categories-->
+<h1>This is category view</h1>
+<div class="container p-3">
+    <!--Add a div with class row and divide the row in two columns-->
+    <div class="row pt-4">
+        <div class="col-md-6">
+            <h2>Category List</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a asp-action="Create" asp-asp-controller="Category" class="btn btn-primary float-right">Create New</a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>Update</th>
+                <!--Add header with Delete-->
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <!--Add another column with link to Update the Category-->
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Category" class="btn btn-primary">Edit</a>
+                    </td>
+                    <!--Add another column with link to Delete the Category-->
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Category" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<!--Perform client side validation-->
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
