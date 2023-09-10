@@ -49,5 +49,43 @@ namespace DataAccessLayer
             }
         }
 
+        public void CreateNewCategoriesList()
+        {
+            var categories = _context.Categories.ToList();
+            var newCategories = new List<Category>();
+
+            foreach(var category in categories)
+            {
+                var newCategory = new Category()
+                {
+                    Name = category.Name,
+                    Description = category.Description
+                };
+                newCategories.Add(newCategory);
+            }
+            
+        }
+
+        public string CreateRefactorExampleMethod(Category category)
+        {
+            string validationErrorMessages = string.Empty;
+
+            if (String.IsNullOrEmpty(category.Name))
+            {
+                validationErrorMessages += "Name is required";
+            }
+            if (String.IsNullOrEmpty(category.Description))
+            {
+                validationErrorMessages += "Description is required";
+            }
+            if (String.IsNullOrEmpty(validationErrorMessages))
+            {
+                return validationErrorMessages;
+            }
+            _context.Categories.Add(category);
+            return "Category added successfully";
+
+        }
+
     }
 }
