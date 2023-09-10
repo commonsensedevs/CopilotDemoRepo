@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.github",
+    "\\.github\\workflows",
+    "\\Core",
+    "\\DataAccessLayer",
+    "\\UnitTests"
+  ],
+  "SelectedNode": "\\DataAccessLayer\\CategoryRepository.cs",
+  "PreviewInSolutionExplorer": false
+}
